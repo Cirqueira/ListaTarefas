@@ -339,12 +339,7 @@ class _TaskListState extends State<TaskList> {
                 ),
                 IconButton(
                   onPressed: () {
-                    // setState(
-                    //   () {
-                    //     _apagar(listatarefas[i].id!, listatarefas[i].titulo!,
-                    //         context);
-                    //   },
-                    // );
+                    _apagar(listatarefas[i].id!, listatarefas[i].titulo!, context);
                   },
                   icon: const Icon(
                     Icons.delete_outline,
