@@ -1,0 +1,21 @@
+/* .checkbox-container { */
+   /* display: flex; */
+  /* Alinha ao centro horizontalmente */
+   /* justify-content: center; */
+  /* Alinha ao centro verticalmente (se necessário) */
+   /* align-items: center; */
+/* } */
+
+ /* .checkbox-label { */
+  /* Espaço entre os checkboxes */
+   /* margin: 0 10px; */
+ /* } */
+
+ /* .checkbox-label {
+  display: flex;
+  align-items: center;
+} */
+
+/* .checkbox-label input[type="checkbox"] {
+  margin-right: 8px;
+} */

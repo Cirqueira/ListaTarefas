@@ -1,0 +1,12 @@
+.custom-button {
+  background-color: transparent; /* Remove o preenchimento */
+  border: none; /* Remove a borda */
+  cursor: pointer; /* Altera o cursor para indicar que é um botão */
+  padding: 0; /* Remove o padding */
+  margin: 0; /* Remove a margem */
+  font: inherit; /* Herdar a fonte para manter o estilo consistente */
+}
+
+.custom-button:focus {
+  outline: none /* Remove o outline quando o botão estiver focado */
+}

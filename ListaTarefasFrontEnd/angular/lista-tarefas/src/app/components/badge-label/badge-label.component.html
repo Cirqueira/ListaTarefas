@@ -1,0 +1,34 @@
+<span class="badge text-bg-primary rounded-pill">concluido</span>
+
+<div [ngSwitch]="status">
+  <span *ngSwitchCase="'success'" class="badge bg-success">Success</span>
+  <span *ngSwitchCase="'warning'" class="badge bg-warning">Warning</span>
+  <span *ngSwitchCase="'danger'" class="badge bg-danger">Danger</span>
+  <span *ngSwitchDefault class="badge bg-secondary">Default</span>
+</div>
+<!-- <div [ngSwitch]="expressao">
+  <div *ngSwitchCase="'valor1'">Conteúdo para o caso 1</div>
+  <div *ngSwitchCase="'valor2'">Conteúdo para o caso 2</div>
+  <div *ngSwitchCase="'valor3'">Conteúdo para o caso 3</div>
+  <div *ngSwitchDefault>Conteúdo padrão</div>
+</div> -->
+
+<!-- Tipos de Badges
+<span class="badge rounded-pill text-bg-primary">Primary</span>
+<span class="badge rounded-pill text-bg-secondary">Secondary</span>
+<span class="badge rounded-pill text-bg-success">Success</span>
+<span class="badge rounded-pill text-bg-danger">Danger</span>
+<span class="badge rounded-pill text-bg-warning">Warning</span>
+<span class="badge rounded-pill text-bg-info">Info</span>
+<span class="badge rounded-pill text-bg-light">Light</span>
+<span class="badge rounded-pill text-bg-dark">Dark</span>
+-->
+
+<!-- Ex: Case (Switch) para implementar o tipo de Badge
+<div [ngSwitch]="status">
+  <span *ngSwitchCase="'success'" class="badge bg-success">Success</span>
+  <span *ngSwitchCase="'warning'" class="badge bg-warning">Warning</span>
+  <span *ngSwitchCase="'danger'" class="badge bg-danger">Danger</span>
+  <span *ngSwitchDefault class="badge bg-secondary">Default</span>
+</div>
+-->

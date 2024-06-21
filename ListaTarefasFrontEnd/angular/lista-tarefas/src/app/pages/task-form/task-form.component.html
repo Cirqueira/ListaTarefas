@@ -1,0 +1,56 @@
+<body>
+  <!-- Navegação -->
+   <!-- Todo: validar se é Edição ou Nova Tarefa -->
+  <app-navbar [routerBack]="['/task-list']"
+    labelTitle="Nova Tarefa / Editar Tarefa">
+  </app-navbar>
+
+
+  <!-- Formulario -->
+  <div class="" style="padding-top: 4%; padding-left: 20%; padding-right: 20%;">
+  <!-- todo: Criar método para adicionarTask -->
+  <!-- todo: Criar método para cancelar/voltar -->
+  <!-- <form novalidate (ngSubmit)="adicionarTarefa()" [formGroup]="taskformForm"> -->
+  <form novalidate [formGroup]="taskformForm">
+    <div class="">
+      <label [ngClass]="{'is-invalid': displayMessage.titulo}" for="titulo">Título</label>
+      <div>
+        <input class="input" style="width: 100%" id="titulo" type="text" placeholder="Digite o título da tarefa"
+          formControlName="titulo"/>
+        <span class="text-danger" *ngIf="displayMessage.titulo">
+          <p [innerHTML]="displayMessage.titulo"></p>
+        </span>
+      </div>
+      <br>
+      <label [ngClass]="{'is-invalid': displayMessage.descricao}">Descrição</label>
+      <div>
+        <input class="input" style="width: 100%" id="descricao" type="text" placeholder="Digite a descrição da tarefa"
+          formControlName="descricao" />
+        <span class="text-danger" *ngIf="displayMessage.descricao">
+          <p [innerHTML]="displayMessage.descricao"></p>
+        </span>
+      </div>
+      <br>
+
+      <label class="">Data Vencimento</label>
+      <div style="width: 100%; margin-left: 1%;">
+        <app-datepicker-label class="" placeholderText="" idText="datavencimento" nameText="datavencimento" typeText="text"
+          formControlNameText="datavencimento">
+        </app-datepicker-label>
+      </div>
+
+
+      <div class="row" style="padding-top: 10px; padding-left: 50px; padding-right: 50px;">
+        <!-- TODO: habilitar o botao se todos os requireds estiverem ok, ex abaixo -->
+        <div class="col align-self-center text-end">
+          <button class="btn btn-cancel cancel_btn" id="Cancelar" type="cancel" (click)="cancelar()">Cancelar</button>
+        </div>
+        <div class="col align-self-center text-start">
+          <!-- <button [disabled]="taskForm.invalid" id="submitButton" type="submit" class="btn btn-primary">Submit</button>   -->
+          <button class="btn btn-success add_btn" id="Adicionar" type="submit" (click)="adicionar()">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</body>

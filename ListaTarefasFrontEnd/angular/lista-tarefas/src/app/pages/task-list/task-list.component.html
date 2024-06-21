@@ -1,0 +1,184 @@
+<body>
+  <div>
+    <form>
+      <!-- Navegação -->
+      <app-navbar [routerBack]="['/login']"
+        labelTitle="Lista de Tarefas"
+        [routerNew]="['/task-form']">
+      </app-navbar>
+
+      <!-- Filtro -->
+      <div>
+        <div class="card" style="margin: 10px; padding: 10px;">
+          <!-- TODO Filtro: Checkbox -->
+          <div class="row">
+            <div class="col align-self-center text-end">
+              <app-checkbox-label idText="completasCheckbox" labelText="Completas"></app-checkbox-label>
+            </div>
+            <div class="col align-self-center text-start">
+              <app-checkbox-label idText="incompletasCheckbox" labelText="Incompletas"></app-checkbox-label>
+            </div>
+          </div>
+
+          <!-- TODO Filtro: Datepicker -->
+          <div class="row" style="padding-top: 10px; padding-left: 50px; padding-right: 50px;">
+            <div class="column-label-width">
+              <label class="form-check-label">
+                Data Vencimento Inicial:
+              </label>
+            </div>
+            <div class="col align-self-center text-start">
+              <app-datepicker-label placeholderText="" idText="datavencimentoinicial" nameText="datavencimentoinicial"
+                typeText="text" formControlNameText="datavencimentoinicial">
+              </app-datepicker-label>
+            </div>
+          </div>
+
+          <div class="row" style="padding-top: 10px; padding-left: 50px; padding-right: 50px;">
+            <div class="column-label-width">
+              <label class="form-check-label">
+                Data Vencimento Final:
+              </label>
+            </div>
+            <div class="col align-self-center text-start">
+              <app-datepicker-label placeholderText="" idText="datavencimentofinal" nameText="datavencimentofinal"
+                typeText="text" formControlNameText="datavencimentofinal">
+              </app-datepicker-label>
+            </div>
+          </div>
+
+          <p>
+
+            <!-- TODO Filtro: Botoes -->
+          <div class="row">
+            <div class="col align-self-center text-end">
+              <span>
+                <button class="btn btn-cancel cancel_btn btn-sm" id="RemoverFiltros" type="cancel">
+                  Remover Filtros
+                </button>
+              </span>
+            </div>
+
+            <div class="col align-self-center text-start">
+              <span>
+                <button class="btn btn-success ok_btn btn-sm" id="Filtrar" type="submit">
+                  Filtrar
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista -->
+      <div class="form" style="margin: 10px;">
+        <ul class="list-group">
+          <!-- TODO: Incluir tarefas na lista. -->
+          <!-- item 01 -->
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col align-self-center text-start">
+                <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
+                <label class="form-check-label" for="firstCheckbox">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Cortar grama</div>
+                    Vencimento: 10/02/2023
+                  </div>
+                </label>
+              </div>
+
+              <div class="col align-self-center text-center">
+                <span class="badge text-bg-success rounded-pill">Concluído</span>
+              </div>
+
+              <div class="col align-self-center text-end">
+                <!-- <td><svg width="20" height="20" viewBox="0 0 512 512" (click)="onEdit(i)"> -->
+                <svg class="svg-item" width="20" height="20" viewBox="0 0 512 512">
+                  <path fill="#4238c7"
+                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z" />
+                </svg>
+                <!-- <td><svg width="20" height="20" viewBox="0 0 448 512" (click)="onDelete(i)"> -->
+                <svg class="svg-item" width="20" height="20" viewBox="0 0 448 512">
+                  <path fill="#df1111"
+                    d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
+                </svg>
+              </div>
+            </div>
+          </li>
+
+
+          <!-- item 02 -->
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col align-self-center text-start">
+                <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox">
+                <label class="form-check-label" for="secondCheckbox">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Comprar café</div>
+                    Vencimento: 13/11/2024
+                  </div>
+                </label>
+              </div>
+
+              <div class="col align-self-center text-center">
+                <span class="badge text-bg-warning rounded-pill">Em andamento</span>
+              </div>
+
+              <div class="col align-self-center text-end">
+                <!-- <td><svg width="20" height="20" viewBox="0 0 512 512" (click)="onEdit(i)"> -->
+                <svg class="svg-item" width="20" height="20" viewBox="0 0 512 512">
+                  <path fill="#4238c7"
+                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z" />
+                </svg>
+                <!-- <td><svg width="20" height="20" viewBox="0 0 448 512" (click)="onDelete(i)"> -->
+                <svg class="svg-item" width="20" height="20" viewBox="0 0 448 512">
+                  <path fill="#df1111"
+                    d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
+                </svg>
+              </div>
+            </div>
+          </li>
+
+
+          <!-- item 03 -->
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col align-self-center text-start">
+                <input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox">
+                <label class="form-check-label" for="thirdCheckbox">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Abastecer o carro</div>
+                    Vencimento: 01/06/2024
+                  </div>
+                </label>
+              </div>
+
+              <div class="col align-self-center text-center">
+                <span class="badge text-bg-danger rounded-pill">Em atraso</span>
+              </div>
+
+              <div class="col align-self-center text-end">
+                <!-- <td><svg width="20" height="20" viewBox="0 0 512 512" (click)="onEdit(i)"> -->
+                <svg class="svg-item" width="20" height="20" viewBox="0 0 512 512">
+                  <path fill="#4238c7"
+                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z" />
+                </svg>
+                <!-- <td><svg width="20" height="20" viewBox="0 0 448 512" (click)="onDelete(i)"> -->
+                <svg class="svg-item" width="20" height="20" viewBox="0 0 448 512">
+                  <path fill="#df1111"
+                    d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
+                </svg>
+
+
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+
+
+
+    </form>
+  </div>
+</body>

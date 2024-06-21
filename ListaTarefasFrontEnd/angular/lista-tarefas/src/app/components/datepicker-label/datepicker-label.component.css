@@ -1,0 +1,9 @@
+  input:focus {
+  border: 1px solid teal;
+  outline: none;
+  }
+
+  .btnCalendar{
+    width: auto;
+    border-color: #DDDDDD;
+  }
