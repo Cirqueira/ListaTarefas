@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   token: string = "";
-  user: any;
   email: string = "";
   localStorageUtils = new LocalStorageUtils();
 
@@ -21,17 +20,13 @@ export class MenuComponent implements OnInit {
 
   usuarioLogado(): boolean {
     this.token = this.localStorageUtils.obterTokenUsuario();
-    this.user = this.localStorageUtils.obterUsuario();
-
-    if (this.user)
-      this.email = this.user.email;
 
     return this.token !== null;
   }
 
   logout() {
     this.localStorageUtils.limparDadosLocaisUsuario();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 
 }

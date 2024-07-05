@@ -1,20 +1,27 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+# Logs
+logs
+*.log
+npm-debug.log*
 
-# compiled output
-/dist
-/tmp
-/out-tsc
-# Only exists if Bazel was run
-/bazel-out
+# Diretório do ambiente local
+.env
 
-# dependencies
-/node_modules
+# Diretórios e arquivos gerados pelo npm
+node_modules/
+package-lock.json
 
-# profiling files
-chrome-profiler-events*.json
+# Diretórios de build e output
+dist/
+out-tsc/
+build/
 
-# IDEs and editors
-/.idea
+# Diretórios do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Diretórios do IDE/editor
+.idea/
 .project
 .classpath
 .c9/
@@ -23,6 +30,7 @@ chrome-profiler-events*.json
 *.sublime-workspace
 
 # IDE - VSCode
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -30,16 +38,31 @@ chrome-profiler-events*.json
 !.vscode/extensions.json
 .history/*
 
+# Arquivos temporários
+tmp/
+temp/
+
+# Cobertura de testes
+coverage/
+
+# Arquivos de configuração específicos do Angular
+.angular/
+.sass-cache/
+
+# Outros arquivos temporários
+*.tmp
+*.bak
+
+# Only exists if Bazel was run
+/bazel-out
+
+# profiling files
+chrome-profiler-events*.json
+
 # misc
-/.sass-cache
 /connect.lock
-/coverage
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
 testem.log
 /typings
-
-# System Files
-.DS_Store
-Thumbs.db

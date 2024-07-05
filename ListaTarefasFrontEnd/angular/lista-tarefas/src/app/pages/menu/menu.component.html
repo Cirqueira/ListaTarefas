@@ -1,11 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-ligh fixed-topt">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']">Minha App Angular</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
       aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
+    <div class="collapse navbar-collapse" id="navbarResponsive" style="margin: 10px; padding-top: 40px;">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/login']">Login</a>
@@ -14,18 +13,14 @@
           <a class="nav-link" [routerLink]="['/task-list']">Lista de Tarefas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/task-list-material']">Lista de Tarefas (Material)</a>
+          <a class="nav-link" [routerLink]="['/task-list-mock']">Lista (Mock)</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/task-form']">Cadastro/Edição de Tarefas</a>
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/task-form/new']">Cadastro/Edição de Tarefas (Nova)</a>
+          <a class="nav-link" [routerLink]="['/task-form']">Nova Tarefa</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/task-form/edit/:id']">Cadastro/Edição de Tarefas (Editar)</a>
-        </li> -->
-
+          <a class="nav-link" [routerLink]="['/task-form/edit/:id']">Editar Tarefa</a>
+        </li>
 
         <!-- Exibe usuário logado. -->
         <ul [ngSwitch]="usuarioLogado()" class="navbar-nav">
@@ -34,7 +29,7 @@
           </li>
           <li *ngSwitchCase="true" class="nav-item">
             <a class="nav-link text-dark" href="javascript:void(0)" (click)="logout()">
-              Sair<span class="fas fa-sign-out-alt"></span>
+              Sair <span class="fas fa-sign-out-alt"></span>
             </a>
           </li>
         </ul>

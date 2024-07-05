@@ -1,0 +1,49 @@
+.add_btn{
+  font-size: 20px;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  margin: 0 5px; /* Espaçamento entre os botões */
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background: teal;
+  box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
+}
+
+.cancel_btn{
+  font-size: 20px;
+  color: teal;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  margin: 0 5px; /* Espaçamento entre os botões */
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background: white;
+  box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
+ }
+
+.input{
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #DDDDDD;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+input:focus {
+  border: 1px solid teal;
+  outline: none;
+}
+
+button:focus {
+  border: 2px solid rgb(84, 170, 170);
+  outline: none;
+}
+
+/* .page-margin {
+  margin: 50px;
+} */

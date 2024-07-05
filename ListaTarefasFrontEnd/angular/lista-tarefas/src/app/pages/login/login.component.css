@@ -37,6 +37,12 @@ body{
 }
 
 input:focus {
-  border: 1px solid teal;
+  /* border: 1px solid teal; */
+  border: 2px solid rgb(84, 170, 170);
+  outline: none;
+}
+
+button:focus {
+  border: 2px solid rgb(84, 170, 170);
   outline: none;
 }

@@ -1,144 +1,253 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { CustomFormsModule } from 'ng2-validation';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChildren } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Tarefas } from 'src/app/models/tarefas';
+import { TarefasService } from '../services/tarefas.service';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
+import { StateService } from '../services/state.service';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css'],
+  styleUrls: ['./task-list.component.css']
 })
-export class TaskListComponent implements OnInit {
-   tasklistForm!: FormGroup;
+export class TaskListComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
 
-  taskArray = [
-    { id: 1, titulo: 'Tarefa 01', descricao: 'descricao 01', datavencimento: '01/01/2020', completa: false },
-    { id: 2, titulo: 'Tarefa 02', descricao: 'descricao 02', datavencimento: '01/01/2020', completa: false },
-    { id: 3, titulo: 'Tarefa 03', descricao: 'descricao 03', datavencimento: '01/01/2020', completa: false },
+  errors: any[] = [];
+  tarefas: Tarefas[] = [];
 
-    // { titulo: 'Tarefa 01', descricao: 'descricao 01', datavencimento: '01/01/2020', completa: false },
-    // { titulo: 'Tarefa 02', descricao: 'descricao 02', datavencimento: '01/01/2020', completa: false },
-    // { titulo: 'Tarefa 03', descricao: 'descricao 03', datavencimento: '01/01/2020', completa: false },
-  ];
-  // editIndex: number | null = null;
-  // private idCounter: number = 4;
+  filtersForm!: FormGroup; //remover?
+  filtros: any = {}; //novo?
 
-  // constructor(public dialog: MatDialog) { }
-  // constructor(private fb: FormBuilder) { }
-  constructor(private toastr: ToastrService)
-  {
-    //
-  }
+  completa: boolean = false;
+  incompleta: boolean = false;
+  dataInicioVencimento: any;
+  dataFimVencimento: any;
+  dataAtual = new Date();
+  sairTela: boolean = false;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private tarefaService: TarefasService,
+    private toastr: ToastrService,
+    private modalService: NgbModal,
+    private stateService: StateService) { }
 
   ngOnInit(): void {
-    // this.tasklistForm = this.fb.group({
-    //   datavencimentoInicial: ['', [Validators.required]],
-    //   datavencimentoFinal: ['', [Validators.required]],
-    // })
-   }
 
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(TaskFormComponent, {
-  //     // maxHeight: '95vh',
-  //     minWidth: '400px',
-  //     // width: '25vw',
-  //   });
+    //remover?
+    this.filtersForm = this.fb.group({
+      completa: [false],
+      incompleta: [false],
+      dataInicioVencimento: [null],
+      dataFimVencimento: [null],
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     // window.location.reload();
-  //   });
-  // }
+    //novo?
+    const savedState = this.stateService.getState('task-list');
+    if (savedState) {
+      //this.filtros = savedState;
+      //this.filtersForm = savedState;
 
+      this.restaurarFiltros(savedState);
+    } else {
+      this.obterListaAsync();
+    }
+  }
 
-  // addOrUpdate() {
-  //   if (this.editIndex === null) {
-  //     // Adicionar novo item
+  restaurarFiltros(savedState: any) {
+    console.log('Restaurando filtros com:', savedState);
 
-  //   } else {
-  //     // Editar item existente
-  //     this.taskArray[this.editIndex] = this.myForm.value;
-  //     this.editIndex = null;
-  //   }
-  //   this.myForm.reset();
-  // }
+    this.filtersForm.patchValue({
+      completa: savedState.value['completa'],
+      incompleta: savedState.value['incompleta'],
+      dataInicioVencimento: savedState.value['dataInicioVencimento'],
+      dataFimVencimento: savedState.value['dataFimVencimento'],
+    });
 
-  // editItem(index: number) {
-  //   this.editIndex = index;
-  //   this.myForm.setValue(this.taskArray[index]);
-  // }
+    this.atualizarExibicao(
+      this.completa,
+      this.incompleta,
+      this.dataInicioVencimento,
+      this.dataFimVencimento
+    );
 
+    console.log('Valores do formulário após restaurar:', this.filtersForm.value);
+  }
 
-  // getDataById(index: number) {
-  //   // return this.taskArray.find(item => item.id === index);
-  // }
+  ngAfterViewInit(): void {
+    this.sairTela = true;
+  }
 
-  // onSubmit(form: NgForm) {
-  //   if (this.editIndex === null) {
+  ngOnDestroy(): void {
+    this.saveState();
+  }
 
-  //   this.taskArray.push({
-  //     id: this.idCounter++,
-  //     titulo: form.controls['titulo'].value,
-  //     descricao: form.controls['descricao'].value,
-  //     datavencimento: form.controls['datavencimento'].value,
-  //     completa: false
-  //   })
-  // } else {
-// Todo: Implementar edição.
-/*
-FindById (getDataById) -> passar como parametro o index.
-Popular os inputs com os dados do FindById (getDataById)
-*/
+  saveState(): void {
+    //this.stateService.setState('task-list', this.filtros);
+    this.stateService.setState('task-list', this.filtersForm);
+  }
 
-    // Editar item existente
-    // this.taskArray[this.editIndex] = form.controls.get;
-  //   this.editIndex = null;
-  // }
-  //   form.reset();
-  // }
-  // onSubmit(form: NgForm) {
-  //   console.log(form);
+  ehDataVencida(item: any): boolean {
+    const dataVencimentoDate = new Date(item.dataVencimento);
 
-  //   this.taskArray.push({
-  //     id: this.idCounter++,
-  //     titulo: form.controls['titulo'].value,
-  //     descricao: form.controls['descricao'].value,
-  //     datavencimento: form.controls['datavencimento'].value,
-  //     completa: false
-  //   })
+    dataVencimentoDate.setHours(0, 0, 0, 0);
+    this.dataAtual.setHours(0, 0, 0, 0);
 
-  //   form.reset();
-  // }
+    if (!item.completa) {
+      if (dataVencimentoDate < this.dataAtual) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-//   onEdit(index: number) {
+  onCheckboxChange(tarefa: Tarefas) {
+    tarefa.completa = !tarefa.completa;
 
-//     console.log(index);
-// //Todo: criar método Edit
-//     // this.taskArray.splice(index, 1);
-//   }
+    this.tarefaService.atualizarAsync(tarefa)
+      .then(response => {
+        this.processarSucesso(response, 'Sucesso!', 'Tarefa atualizada com sucesso!');
+      })
+      .catch(error => {
+        console.error('Erro: ', error);
+        this.processarFalha(error);
+      });
+  }
 
-//   onDelete(index: number) {
-//     console.log(index);
-// //Todo: criar método Deletar
-//     // this.taskArray.splice(index, 1);
-//   }
+  obterListaAsync() {
+    this.tarefaService.obterListaAsync(false, false, null, null)
+      .then(response => {
+        this.tarefas = response;
+      })
+      .catch(error => {
+        console.error('Erro: ', error);
+      });
+  }
 
-  // onCheck(index: number) {
-  //   console.log(this.taskArray);
+  inserirTarefa() {
+    this.router.navigate(['/task-form']);
+  }
 
-  //   this.taskArray[index].completa = !this.taskArray[index].completa;
-  // }
+  editarTarefa(id: number) {
+    this.router.navigate(['/task-form-edit', id]);
+  }
 
-  // adicionarTarefa(): void {
-  //   const dialogRef = this.dialog.open(TaskFormComponent, {
-  //     // maxHeight: '95vh',
-  //     minWidth: '400px',
-  //     // width: '25vw',
-  //   });
+  deletarTarefa(id: number) {
+    this.tarefaService.apagarAsync(id)
+      .then(response => {
+        this.processarSucesso(response, 'Sucesso!', 'Registro removido com sucesso.');
+      })
+      .catch(error => {
+        console.error('Erro: ', error);
+        this.processarFalha(error);
+      });
+  }
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     // window.location.reload();
-  //   });
-  // }
+  atualizarExibicao(completa: boolean, incompleta: boolean,
+    dataInicioVencimento: Date, dataFimVencimento: Date)
+  {
+    this.tarefaService.obterListaAsync(completa, incompleta, dataInicioVencimento, dataFimVencimento)
+      .then(response => {
+        this.tarefas = response;
+      })
+      .catch(error => {
+        console.error('Erro: ', error);
+      });
+  }
+
+  processarSucesso(response: any, titleToast: string, messageToast: string) {
+    this.errors = [];
+
+    let toast = this.toastr.success(messageToast, titleToast);
+    if (toast) {
+      this.atualizarExibicao(this.completa, this.incompleta,
+        this.dataInicioVencimento, this.dataFimVencimento);
+    }
+  }
+
+  processarFalha(fail: any) {
+    this.errors = fail.error;
+    this.toastr.error('Ocorreu um erro!', 'Opa :(');
+  }
+
+  abrirModal(content: any, id: number) {
+    const modalRef = this.modalService.open(content);
+
+    modalRef.result.then((result) => {
+      if (result === 'confirm') {
+        this.deletarTarefa(id);
+      }
+    });
+  }
+
+  aplicarFiltros() {
+    if (this.dataInicioVencimento === undefined)
+      this.dataInicioVencimento = null;
+
+    if (this.dataFimVencimento === undefined)
+      this.dataFimVencimento = null;
+
+    if (this.ehValidoFiltroPeriodo(this.dataInicioVencimento, this.dataFimVencimento)) {
+      this.atualizarExibicao(this.completa, this.incompleta,
+        this.dataInicioVencimento, this.dataFimVencimento);
+    }
+
+    //novo?
+    this.saveState();
+  }
+
+  removerFiltros () {
+    this.completa = false;
+    this.incompleta = false;
+    this.dataInicioVencimento = null;
+    this.dataFimVencimento = null;
+
+    this.obterListaAsync();
+  }
+
+  ehValidoFiltroPeriodo(dataInicioVencimento: Date, dataFimVencimento: Date) {
+    if (dataInicioVencimento !== null || dataFimVencimento !== null) {
+      if (dataInicioVencimento === null) {
+        let toastr = this.toastr.warning('Selecione o período inicial.', 'Atenção.');
+        if (toastr) {
+          toastr.onHidden.subscribe(() => {
+            const inputElement = document.getElementById('dataInicioVencimento') as HTMLInputElement;
+            if (inputElement) {
+              inputElement.focus();
+            }
+          });
+        }
+        return false;
+      }
+      else if (dataFimVencimento === null) {
+        let toastr = this.toastr.warning('Selecione o período final.', 'Atenção.');
+        if (toastr) {
+          toastr.onHidden.subscribe(() => {
+            const inputElement = document.getElementById('dataFimVencimento') as HTMLInputElement;
+            if (inputElement) {
+              inputElement.focus();
+            }
+          });
+        }
+        return false;
+      }
+      else if (dataInicioVencimento > dataFimVencimento) {
+        let toastr = this.toastr.warning('O periodo inicial não pode ser maior que o período final.', 'Atenção.');
+        if (toastr) {
+          toastr.onHidden.subscribe(() => {
+            const inputElement = document.getElementById('dataInicioVencimento') as HTMLInputElement;
+            if (inputElement) {
+              inputElement.focus();
+            }
+          });
+        }
+        return false;
+      }
+    }
+    return true;
+  }
 }

@@ -1,0 +1,62 @@
+<body>
+  <!-- Navegação -->
+  <app-navbar [routerBack]="['/task-list']" [backButton]="cancelar" labelTitle="Editar Tarefa" [exibirAdd]="false">
+  </app-navbar>
+
+  <!-- Formulario -->
+  <div class="" style="padding-top: 4%; padding-left: 20%; padding-right: 20%;">
+    <form novalidate [formGroup]="taskformeditForm">
+
+      <!-- Captura todos os erros e exibe -->
+      <div class="alert alert-danger" *ngIf="errors.length > 0">
+        <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+        <ul>
+          <li *ngFor="let error of errors">{{ error }}</li>
+        </ul>
+      </div>
+
+      <div class="">
+        <!-- Titulo -->
+        <label [ngClass]="{'is-invalid': displayMessage.titulo}" for="titulo">Título</label>
+        <div>
+          <input class="input" style="width: 100%" id="titulo" type="text" autocomplete="off"
+            placeholder="Digite o título da tarefa" formControlName="titulo" />
+          <span class="text-danger" *ngIf="displayMessage.titulo">
+            <p [innerHTML]="displayMessage.titulo"></p>
+          </span>
+        </div>
+        <br>
+
+        <!-- Descricao -->
+        <label [ngClass]="{'is-invalid': displayMessage.descricao}">Descrição</label>
+        <div>
+          <input class="input" style="width: 100%" id="descricao" type="text" autocomplete="off"
+            placeholder="Digite a descrição da tarefa" formControlName="descricao" />
+          <span class="text-danger" *ngIf="displayMessage.descricao">
+            <p [innerHTML]="displayMessage.descricao"></p>
+          </span>
+        </div>
+        <br>
+
+        <!-- Data Vencimento -->
+        <label for="dataVencimento" class="form-check-label">Data Vencimento</label>
+        <div>
+          <input class="form-control" style="width: 100%" id="dataVencimento" autocomplete="off" type="date"
+            name="dataVencimento" formControlName="dataVencimento" onkeydown="return false"/>
+        </div>
+
+        <!-- Botoes: Cancelar / Salvar -->
+        <div class="row" style="padding-top: 10px; padding-left: 50px; padding-right: 50px;">
+          <div class="col align-self-center text-end">
+            <!-- <button class="btn btn-cancel cancel_btn" id="Cancelar" type="cancel" (click)="cancelar()">Cancelar</button> -->
+            <button class="btn btn-cancel cancel_btn" id="Cancelar" type="cancel" [routerLink]="['/task-list']">Cancelar</button>
+          </div>
+          <div class="col align-self-center text-start">
+            <button class="btn btn-success add_btn" id="Salvar" type="submit" [disabled]="!taskformeditForm.valid"
+              (click)="atualizarTarefa()">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>

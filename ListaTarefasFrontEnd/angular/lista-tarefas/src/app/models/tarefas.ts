@@ -2,18 +2,18 @@ import { Util } from "../utils/utils";
 
 export class Tarefas {
   constructor(id: number = 0, titulo: string = "", descricao: string = "",
-    datavencimento: string = "", completa: boolean = false)
+    dataVencimento: string = "", completa: boolean = false)
   {
-    this.Id = Util.TryValue(id, "number");
-    this.Titulo = Util.TryValue(titulo, "string");
-    this.Descricao = Util.TryValue(descricao, "string");
-    this.DataVencimento = Util.TryValue(datavencimento, "string");
-    this.Completa = Util.TryValue(completa, "boolean");
+    this.id = Util.TryValue(id, "number");
+    this.titulo = Util.TryValue(titulo, "string");
+    this.descricao = Util.TryValue(descricao, "string");
+    this.dataVencimento = Util.TryValue(dataVencimento, "string");
+    this.completa = Util.TryValue(completa, "boolean");
   }
 
-  Id: number;
-  Titulo: string;
-  Descricao: string;
-  DataVencimento: string;
-  Completa: boolean;
+  id: number;
+  titulo: string;
+  descricao: string;
+  dataVencimento: string;
+  completa: boolean;
 }

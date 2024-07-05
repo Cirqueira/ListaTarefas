@@ -1,44 +1,48 @@
-import { AfterViewInit, Component, ElementRef, NgModule, OnInit, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
-import { Tarefas } from 'src/app/models/tarefas';
-import { DisplayMessage, GenericValidator, ValidationMessages } from './generic-form-validation';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, fromEvent, merge } from 'rxjs';
-import { NgForm } from '@angular/forms';
-
-import { CustomFormsModule } from 'ng2-validation';
+import { DisplayMessage, GenericValidator, ValidationMessages } from './generic-form-validation';
 import { ToastrService } from 'ngx-toastr';
+import { Tarefas } from 'src/app/models/tarefas';
+import { TarefasService } from '../services/tarefas.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.css']
+  styleUrls: ['./task-form.component.css'],
+  providers: [DatePipe]
 })
 
+// TODO: Implementar Guarda de Rota para evitar sair do Formulario se o mesmo estiver em preenchimento
 export class TaskFormComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(FormControlName, { read: ElementRef })
   formInputElements!: ElementRef[];
 
+  errors: any[] = [];
   taskformForm!: FormGroup;
   tarefas!: Tarefas;
+  dataVencimento: any;
+  dataAtual = new Date();
 
   validationMessages: ValidationMessages;
   genericValidator: GenericValidator;
   displayMessage: DisplayMessage = {};
 
-  constructor(private fb: FormBuilder,
-              private toastr: ToastrService)
-  {
-  // constructor(public dialogRef: MatDialogRef<TaskFormComponent>) {
+  mudancasNaoSalvas: boolean = false;
 
+  constructor(private fb: FormBuilder,
+              private tarefasService: TarefasService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private toastr: ToastrService,
+              private datePipe: DatePipe )
+  {
     this.validationMessages = {
-      titulo: {
-        required: 'O titulo é obrigatório.',
-      },
-      descricao: {
-        required: 'A descrição é obrigatória.',
-      },
-      // Todo: Caso novo registro => Validar a DataVencimento não ser menor que o dia atual.
+      titulo: { required: 'O titulo é obrigatório.',  },
+      descricao: { required: 'A descrição é obrigatória.',  },
     };
 
     this.genericValidator = new GenericValidator(this.validationMessages);
@@ -48,49 +52,81 @@ export class TaskFormComponent implements OnInit, AfterViewInit {
     this.taskformForm = this.fb.group({
       titulo: ['', Validators.required],
       descricao: ['', Validators.required],
-      datavencimento: [''],
+      dataVencimento: [null],
     });
-  }
 
-  ngAfterViewInit(): void {
-    let controlBlurs: Observable<any>[] = this.formInputElements.map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
-
-    merge(...controlBlurs).subscribe(() => {
-      this.displayMessage = this.genericValidator.processMessages(this.taskformForm);
-      // this.mudancasNaoSalvas = true;
-    });
-  }
-
-  adicionar(){
-    console.log('método "ADICIONAR": ', this.taskformForm.value);
-
-    if (this.taskformForm.dirty && this.taskformForm.valid) {
-      this.tarefas = Object.assign({}, this.tarefas, this.taskformForm.value);
+    // Colocar o foco de volta no campo titulo
+    const inputElement = document.getElementById('titulo') as HTMLInputElement;
+    if (inputElement) {
+      inputElement.focus();
     }
   }
 
-  cancelar(){
-    console.log('método "CANCELAR": fechar modal.')
+  ngAfterViewInit(): void {
+    let controlBlurs: Observable<any>[] = this.formInputElements
+      .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
+
+    merge(...controlBlurs).subscribe(() => {
+      this.displayMessage = this.genericValidator.processMessages(this.taskformForm);
+    });
+
+    this.mudancasNaoSalvas = true;
+
+    const data = document.getElementById('dataVencimento') as HTMLInputElement;
+    data.min = new Date().toISOString().split("T")[0];
   }
 
-  // cancel(): void {
-  //   this.dialogRef.close();
-  // }
+  ehVencimentoValido(data: string) {
+    const dataAtualFormatada = this.datePipe.transform(this.dataAtual, 'yyyy-MM-dd');
 
-  // adicionarTarefa() {
-  //   this.tarefas = Object.assign({}, this.tarefas, this.taskformForm.value);
-  // }
+    if (data !== null) {
+      if (data < dataAtualFormatada!) {
+        this.toastr.warning('A data de vencimento não pode ser menor que hoje.');
+        return false;
+      }
+    }
+    return true;
+  }
 
+  adicionarTarefa(){
+    if (this.taskformForm.dirty && this.taskformForm.valid) {
+      this.tarefas = Object.assign({}, this.tarefas, this.taskformForm.value);
+
+      if (this.tarefas.dataVencimento === '' || this.tarefas.dataVencimento === undefined)
+        this.dataVencimento = null;
+
+      if (this.ehVencimentoValido(this.tarefas.dataVencimento)) {
+        this.tarefasService.adicionarAsync(this.tarefas)
+          .then(response => {
+            this.processarSucesso();
+            this.mudancasNaoSalvas = false;
+
+            let toastr = this.toastr.success('Registro criado com sucesso.');
+            if (toastr){
+              toastr.onHidden.subscribe(()=> {
+                this.router.navigate(['/task-list']);
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Erro: ', error);
+            this.processarFalha(error);
+          });
+      }
+    }
+  }
+
+  processarSucesso() {
+    this.taskformForm.reset();
+    this.errors = [];
+  }
+
+  processarFalha(fail: any) {
+    this.errors = fail.error;
+    this.toastr.error('Ocorreu um erro!', 'Opa :(');
+  }
+
+  cancelar(){
+    this.router.navigate(['/task-list']);
+  }
 }
-
-// Todo: Método que adiciona novo registro ao Array do TaskList
-// onSubmit(form: NgForm) {
-//   console.log(form);
-
-//   this.taskArray.push({
-//     taskName: form.controls['task'].value,
-//     isCompleted: false
-//   })
-
-//   form.reset();
-// }

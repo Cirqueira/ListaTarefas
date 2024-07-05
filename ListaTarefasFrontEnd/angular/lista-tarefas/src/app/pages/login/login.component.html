@@ -1,50 +1,41 @@
+<!-- Captura todos os erros e exibe -->
 <body>
-  <div>
-    <!-- todo: Criar método para logar() -->
-    <form novalidate (ngSubmit)="logar()" [formGroup]="loginForm">
-      <!-- <form novalidate [formGroup]="loginForm"> -->
-
-      <!-- Captura todos os erros e exibe -->
-      <div class="alert alert-danger" *ngIf="errors.length > 0">
-        <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
-        <ul>
-          <li *ngFor="let error of errors">{{ error }}</li>
-        </ul>
-      </div>
-
-      <div class="cardLogin">
-        <img src="assets/login.jpg" width="200" height="200" alt="Logo">
-      </div>
-      <div class="form">
-        <label for="email" [ngClass]="{'is-invalid': displayMessage.email}">E-mail</label>
-        <div>
-          <input class="input" id="email" type="text" placeholder="E-mail (requerido)" formControlName="email" />
-          <span class="text-danger" *ngIf="displayMessage.email">
-            <p [innerHTML]="displayMessage.email"></p>
-          </span>
-        </div>
-
-        <label [ngClass]="{'is-invalid': displayMessage.senha}">Senha</label>
-        <div>
-          <input class="input" id="senha" type="password" placeholder="Senha (requerida)" formControlName="senha" />
-          <span class="text-danger" *ngIf="displayMessage.senha">
-            <p [innerHTML]="displayMessage.senha"></p>
-          </span>
-        </div>
-
-        <!-- TODO: utilizar apenas em teste -->
-        <div>
-          <button class="form-control btn btn-success login_btn" id="Logar" type="submit"  (click)="abrirTaskList()">
-            Login
-          </button>
-        </div>
-        <!-- <div>
-          <button class="form-control btn btn-success login_btn" id="Logar" type="submit" [disabled]="!loginForm.valid"
-            (click)="logar()">Login</button>
-        </div> -->
-
-
-      </div>
-    </form>
+  <div class="alert alert-danger" *ngIf="errors.length > 0">
+    <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+    <ul>
+      <li *ngFor="let error of errors">{{ error }}</li>
+    </ul>
   </div>
+</body>
+
+<body>
+  <form novalidate [formGroup]="loginForm">
+    <div class="cardLogin">
+      <img src="assets/login.jpg" width="200" height="200" alt="Logo">
+    </div>
+    <div class="form">
+      <label for="email" [ngClass]="{'is-invalid': displayMessage.email}">E-mail</label>
+      <div>
+        <input class="input" id="email" type="text" placeholder="E-mail (requerido)" autocomplete="off" formControlName="email" />
+        <span class="text-danger" *ngIf="displayMessage.email">
+          <p [innerHTML]="displayMessage.email"></p>
+        </span>
+      </div>
+
+      <label [ngClass]="{'is-invalid': displayMessage.password}">Senha</label>
+      <div>
+        <input class="input" id="password" type="password" placeholder="Senha (requerida)" autocomplete="off" formControlName="password" />
+        <span class="text-danger" *ngIf="displayMessage.password">
+          <p [innerHTML]="displayMessage.password"></p>
+        </span>
+      </div>
+
+      <div>
+        <button class="form-control btn btn-success login_btn" id="Login" type="submit" [disabled]="!loginForm.valid"
+          (click)="logar()">Login
+        </button>
+      </div>
+
+    </div>
+  </form>
 </body>

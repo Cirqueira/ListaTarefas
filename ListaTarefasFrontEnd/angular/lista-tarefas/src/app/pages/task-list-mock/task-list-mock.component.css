@@ -1,0 +1,54 @@
+.ok_btn{
+  color: white;
+  border-radius: 10px;
+  border: none;
+  width: 45%;
+  padding: 10px;
+  background: teal;
+  box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
+}
+
+.cancel_btn{
+  color: teal;
+  border-radius: 10px;
+  border: none;
+  width: 45%;
+  padding: 10px;
+  background: white;
+  box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
+}
+
+button:focus {
+  border: 2px solid rgb(84, 170, 170);
+  outline: none;
+}
+
+input:focus {
+  border: 2px solid rgb(84, 170, 170);
+  outline: none;
+}
+
+.checkbox-container {
+  margin: 0 15px;
+}
+
+.checkbox-container label {
+  margin: 0 15px;   /* Espaço entre os checkboxes */
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.svg-item {
+  margin: 0 10px;
+}
+
+.column-label-width{
+  width: 200px;
+}

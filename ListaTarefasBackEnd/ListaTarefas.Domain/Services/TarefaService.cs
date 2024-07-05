@@ -45,6 +45,7 @@ namespace ListaTarefas.Domain.Services
         public async Task<Tarefa> AdicionarAsync(Tarefa tarefa)
         {
             if (!ValidarTarefaEntidade(tarefa, false))
+            //if (!ValidarTarefaEntidade(tarefa, tarefa.DataVencimento.HasValue))
             {
                 return null;
             }
@@ -64,8 +65,8 @@ namespace ListaTarefas.Domain.Services
         {
 
             if (!ValidarTarefaEntidade(tarefa, false))
+            //if (!ValidarTarefaEntidade(tarefa, tarefa.DataVencimento.HasValue))
             {
-                Notify(TarefaNotifications.ErroAtualizar);
                 return null;
             }
 

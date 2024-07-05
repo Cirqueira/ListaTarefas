@@ -1,34 +1,46 @@
-2024/06/06-20:02:46.181 2b60 Reusing MANIFEST C:\Users\DevPs\AppData\Local\Temp\flutter_tools.d833ea09\flutter_tools_chrome_device.3999626b\Default\shared_proto_db/MANIFEST-000001
-2024/06/06-20:02:46.182 2b60 Recovering log #59
-2024/06/06-20:02:46.183 2b60 Reusing old log C:\Users\DevPs\AppData\Local\Temp\flutter_tools.d833ea09\flutter_tools_chrome_device.3999626b\Default\shared_proto_db/000059.log 
-2024/06/06-20:02:46.183 2b60 Delete type=0 #3
-2024/06/06-20:02:46.183 2b60 Delete type=0 #4
-2024/06/06-20:02:46.183 2b60 Delete type=2 #5
-2024/06/06-20:02:46.183 2b60 Delete type=0 #7
-2024/06/06-20:02:46.184 2b60 Delete type=2 #8
-2024/06/06-20:02:46.184 2b60 Delete type=0 #10
-2024/06/06-20:02:46.184 2b60 Delete type=2 #11
-2024/06/06-20:02:46.184 2b60 Delete type=0 #13
-2024/06/06-20:02:46.184 2b60 Delete type=2 #14
-2024/06/06-20:02:46.184 2b60 Delete type=0 #16
-2024/06/06-20:02:46.184 2b60 Delete type=2 #17
-2024/06/06-20:02:46.184 2b60 Delete type=0 #19
-2024/06/06-20:02:46.184 2b60 Delete type=2 #21
-2024/06/06-20:02:46.184 2b60 Delete type=0 #23
-2024/06/06-20:02:46.185 2b60 Delete type=2 #24
-2024/06/06-20:02:46.185 2b60 Delete type=0 #26
-2024/06/06-20:02:46.185 2b60 Delete type=2 #27
-2024/06/06-20:02:46.185 2b60 Delete type=0 #29
-2024/06/06-20:02:46.185 2b60 Delete type=2 #30
-2024/06/06-20:02:46.185 2b60 Delete type=0 #32
-2024/06/06-20:02:46.185 2b60 Delete type=0 #37
-2024/06/06-20:02:46.185 2b60 Delete type=2 #38
-2024/06/06-20:02:46.185 2b60 Delete type=0 #40
-2024/06/06-20:02:46.185 2b60 Delete type=2 #41
-2024/06/06-20:02:46.185 2b60 Delete type=0 #43
-2024/06/06-20:02:46.185 2b60 Delete type=2 #44
-2024/06/06-20:02:46.185 2b60 Delete type=0 #46
-2024/06/06-20:02:46.185 2b60 Delete type=2 #47
-2024/06/06-20:02:46.185 2b60 Delete type=0 #49
-2024/06/06-20:02:46.185 2b60 Delete type=0 #53
-2024/06/06-20:02:46.186 2b60 Delete type=0 #56
+2024/07/02-08:52:41.111 3b5c Reusing MANIFEST C:\Users\DevPs\AppData\Local\Temp\flutter_tools.d045d93d\flutter_tools_chrome_device.48cf8f8d\Default\shared_proto_db/MANIFEST-000001
+2024/07/02-08:52:41.112 3b5c Recovering log #59
+2024/07/02-08:52:41.114 3b5c Reusing old log C:\Users\DevPs\AppData\Local\Temp\flutter_tools.d045d93d\flutter_tools_chrome_device.48cf8f8d\Default\shared_proto_db/000059.log 
+2024/07/02-08:52:41.115 3b5c Delete type=0 #3
+2024/07/02-08:52:41.115 3b5c Delete type=0 #4
+2024/07/02-08:52:41.115 3b5c Delete type=2 #5
+2024/07/02-08:52:41.115 3b5c Delete type=0 #7
+2024/07/02-08:52:41.115 3b5c Delete type=2 #8
+2024/07/02-08:52:41.115 3b5c Delete type=0 #10
+2024/07/02-08:52:41.116 3b5c Delete type=2 #11
+2024/07/02-08:52:41.116 3b5c Delete type=0 #13
+2024/07/02-08:52:41.116 3b5c Delete type=2 #14
+2024/07/02-08:52:41.116 3b5c Delete type=0 #16
+2024/07/02-08:52:41.116 3b5c Delete type=2 #17
+2024/07/02-08:52:41.116 3b5c Delete type=0 #19
+2024/07/02-08:52:41.116 3b5c Delete type=2 #21
+2024/07/02-08:52:41.116 3b5c Delete type=0 #23
+2024/07/02-08:52:41.116 3b5c Delete type=2 #24
+2024/07/02-08:52:41.116 3b5c Delete type=0 #26
+2024/07/02-08:52:41.116 3b5c Delete type=2 #27
+2024/07/02-08:52:41.116 3b5c Delete type=0 #29
+2024/07/02-08:52:41.117 3b5c Delete type=2 #30
+2024/07/02-08:52:41.117 3b5c Delete type=0 #32
+2024/07/02-08:52:41.117 3b5c Delete type=0 #37
+2024/07/02-08:52:41.117 3b5c Delete type=2 #38
+2024/07/02-08:52:41.117 3b5c Delete type=0 #40
+2024/07/02-08:52:41.117 3b5c Delete type=2 #41
+2024/07/02-08:52:41.117 3b5c Delete type=0 #43
+2024/07/02-08:52:41.117 3b5c Delete type=2 #44
+2024/07/02-08:52:41.117 3b5c Delete type=0 #46
+2024/07/02-08:52:41.117 3b5c Delete type=2 #47
+2024/07/02-08:52:41.117 3b5c Delete type=0 #49
+2024/07/02-08:52:41.117 3b5c Delete type=0 #53
+2024/07/02-08:52:41.117 3b5c Delete type=0 #56
+2024/07/02-08:52:54.730 3b5c Level-0 table #63: started
+2024/07/02-08:52:54.738 3b5c Level-0 table #63: 146461 bytes OK
+2024/07/02-08:52:54.740 3b5c Delete type=0 #59
+2024/07/02-08:52:54.741 3b5c Compacting 4@0 + 1@1 files
+2024/07/02-08:52:54.751 3b5c Generated table #64@0: 1939 keys, 80967 bytes
+2024/07/02-08:52:54.752 3b5c Compacted 4@0 + 1@1 files => 80967 bytes
+2024/07/02-08:52:54.753 3b5c compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/07/02-08:52:54.754 3b5c Delete type=2 #51
+2024/07/02-08:52:54.754 3b5c Delete type=2 #54
+2024/07/02-08:52:54.754 3b5c Delete type=2 #57
+2024/07/02-08:52:54.754 3b5c Delete type=2 #60
+2024/07/02-08:52:54.754 3b5c Delete type=2 #63

@@ -1,28 +1,14 @@
-body {
-/* display: flex; */
- justify-content: center;
- align-items: center;
-}
-
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
 .ok_btn{
-/* font-size: 20px; */
-color: white;
-border-radius: 10px;
-border: none;
-width: 45%;
-padding: 10px;
-background: teal;
-box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
+  color: white;
+  border-radius: 10px;
+  border: none;
+  width: 45%;
+  padding: 10px;
+  background: teal;
+  box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
 }
 
 .cancel_btn{
-  /* font-size: 20px; */
   color: teal;
   border-radius: 10px;
   border: none;
@@ -30,45 +16,27 @@ box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
   padding: 10px;
   background: white;
   box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
-  }
+}
 
-.input{
-padding: 10px;
-width: 300px;
-border: 1px solid #DDDDDD;
-border-radius: 15px;
-margin-bottom: 15px;
+button:focus {
+  border: 2px solid rgb(84, 170, 170);
+  outline: none;
 }
 
 input:focus {
-border: 1px solid teal;
-outline: none;
-}
-
-
-.page-margin {
-  /* margin: 50px; */
-}
-
-#submitButton {
-  /* margin-top: 20px; */
+  border: 2px solid rgb(84, 170, 170);
+  outline: none;
 }
 
 .checkbox-container {
-  /* display: flex; */
-  /* Alinha ao centro horizontalmente */
-  /* justify-content: center; */
-  /* Alinha ao centro verticalmente (se necessário) */
-  /* align-items: center; */
   margin: 0 15px;
 }
 
 .checkbox-container label {
-  /* Espaço entre os checkboxes */
-  margin: 0 15px;
+  margin: 0 15px;   /* Espaço entre os checkboxes */
  }
 
- .checkbox-label {
+.checkbox-label {
   display: flex;
   align-items: center;
 }
@@ -76,9 +44,52 @@ outline: none;
 .checkbox-label input[type="checkbox"] {
   margin-right: 8px;
 }
+
 .svg-item {
   margin: 0 10px;
 }
+
 .column-label-width{
   width: 200px;
 }
+
+.centered-container {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  height: 40vh; /* Altura igual à altura da viewport */
+}
+
+.centered-text {
+  text-align: center; /* Alinha o texto ao centro */
+  font-size: 30px; /* Tamanho da fonte do texto */
+}
+
+/* body {
+ justify-content: center;
+ align-items: center;
+} */
+
+/* .button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+} */
+
+/* .input{
+padding: 10px;
+width: 300px;
+border: 1px solid #DDDDDD;
+border-radius: 15px;
+margin-bottom: 15px;
+} */
+
+/* .datepicker input:focus {
+  border: 1px solid teal;
+  outline: none;
+  } */
+
+/* .btnCalendar{
+  width: auto;
+  border-color: #DDDDDD;
+} */

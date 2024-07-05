@@ -5,8 +5,8 @@ export class LocalStorageUtils {
   }
 
   public salvarDadosLocaisUsuario(response: any) {
-    this.salvarTokenUsuario(response.accessToken);
-    this.salvarUsuario(response.userToken);
+    this.salvarTokenUsuario(response.acessToken);
+    // this.salvarUsuario(response.userToken);
   }
 
   public limparDadosLocaisUsuario() {
@@ -15,14 +15,17 @@ export class LocalStorageUtils {
   }
 
   public obterTokenUsuario(): string {
+    let tokenRetorno = localStorage.getItem('tasklist.token')!;
     return localStorage.getItem('tasklist.token')!;
   }
 
   public salvarTokenUsuario(token: string) {
-    localStorage.setItem('tasklist.token', token);
+    const base64Encoded = btoa(token);
+    localStorage.setItem('tasklist.token', base64Encoded);
   }
 
   public salvarUsuario(user: string) {
      localStorage.setItem('tasklist.user', JSON.stringify(user));
   }
 }
+

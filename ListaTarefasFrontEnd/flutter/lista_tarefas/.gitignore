@@ -1,0 +1,40 @@
+# Flutter/Dart/Pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Obfuscation related
+app.*.symbols
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+# Comment the above line if you have project-level settings in .idea/ and want to share them
+# (more info: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839)
+
+# VS Code related
+.vscode/
+# Comment the above line if you have project-level settings in .vscode/ and want to share them
+# (more info: https://code.visualstudio.com/docs/getstarted/settings)
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Linux
+*.lock
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.log

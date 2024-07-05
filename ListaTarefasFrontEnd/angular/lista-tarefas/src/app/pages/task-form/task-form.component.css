@@ -1,19 +1,15 @@
-/* .page-margin {
-  margin: 50px;
-} */
-
 .add_btn{
-font-size: 20px;
-color: white;
-border-radius: 10px;
-border: none;
-width: 100%;
-padding: 10px;
-margin: 0 5px; /* Espaçamento entre os botões */
-margin-top: 15px;
-margin-bottom: 15px;
-background: teal;
-box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
+  font-size: 20px;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  margin: 0 5px; /* Espaçamento entre os botões */
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background: teal;
+  box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
 }
 
 .cancel_btn{
@@ -28,7 +24,7 @@ box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
   margin-bottom: 15px;
   background: white;
   box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
-  }
+}
 
 .input{
 padding: 10px;
@@ -39,15 +35,24 @@ margin-bottom: 15px;
 }
 
 input:focus {
-border: 1px solid teal;
-outline: none;
+  border: 2px solid rgb(84, 170, 170);
+  outline: none;
 }
-.column-label-width{
+
+button:focus {
+  border: 2px solid rgb(84, 170, 170);
+  outline: none;
+}
+
+/* .page-margin {
+  margin: 50px;
+} */
+
+/* .column-label-width{
   width: 200px;
-}
+} */
 
-
-.cardForm{
+/* .cardForm{
   width: auto;
   height: auto;
   display: flex;
@@ -56,18 +61,18 @@ outline: none;
   justify-content: center;
   padding: 0px;
   border-radius: 15px;
-}
+} */
 
-.inputDatetime{
+/* .inputDatetime{
   padding: 10px;
   width: 300px;
   border: 1px solid #DDDDDD;
   border-radius: 10px;
   margin-bottom: 15px;
-  }
+  } */
 
 
-.btnCalendar{
+/* .btnCalendar{
       width: auto;
       border-color: #DDDDDD;
-    }
+    } */
