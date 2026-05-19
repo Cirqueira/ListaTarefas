@@ -2,6 +2,17 @@
 
 Aplicação full stack para gerenciamento de tarefas, com API REST em ASP.NET Core, persistência em MySQL e dois clientes web: **Angular** e **Flutter**.
 
+---
+
+## Demonstração do Sistema
+
+Imagem do sistema em pleno funcionamento:
+
+<p align="center">
+  <img src="img/dashboard.jpeg" width="50%" alt="Dashboard">
+</p>
+
+---
 
 ## Funcionalidades
 
@@ -12,6 +23,8 @@ Aplicação full stack para gerenciamento de tarefas, com API REST em ASP.NET Co
 - Documentação interativa da API com **Swagger** (ambiente de desenvolvimento)
 - Validação de regras de negócio com **FluentValidation**
 
+---
+
 ## Tecnologias
 
 | Camada | Tecnologias |
@@ -21,6 +34,8 @@ Aplicação full stack para gerenciamento de tarefas, com API REST em ASP.NET Co
 | **Dados** | Entity Framework Core 5, MySQL, Dapper |
 | **Front-end Web** | Angular 12, Bootstrap, ngx-toastr |
 | **Front-end Mobile/Web** | Flutter 3.x, HTTP, SharedPreferences |
+
+---
 
 ## Arquitetura
 
@@ -48,6 +63,8 @@ flowchart TB
     DATA --> DB
 ```
 
+---
+
 ### Estrutura do repositório
 
 ```
@@ -62,6 +79,8 @@ ListaTarefas/
     └── flutter/lista_tarefas/     # App Flutter (web, mobile, desktop)
 ```
 
+---
+
 ## Pré-requisitos
 
 - [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
@@ -69,6 +88,8 @@ ListaTarefas/
 - [Node.js](https://nodejs.org/) (recomendado LTS) — para o front Angular
 - [Flutter SDK](https://docs.flutter.dev/get-started/install) — para o app Flutter
 - Visual Studio 2022 ou VS Code (opcional)
+
+---
 
 ## Configuração
 
@@ -112,6 +133,8 @@ Após rodar as migrations, existe um usuário inicial para testes:
 | Senha | `1234` |
 
 Altere ou remova esse usuário em ambientes de produção.
+
+---
 
 ## Como executar
 
@@ -158,6 +181,8 @@ flutter run
 A base da API está configurada em `lib/services/http_service_base.dart` (`https://localhost:5001/api/`). Ajuste conforme a porta em que a API estiver rodando.
 
 > Para desenvolvimento local com HTTPS autoassinado, pode ser necessário confiar no certificado de desenvolvimento do .NET (`dotnet dev-certs https --trust`).
+
+---
 
 ## API REST
 
@@ -223,6 +248,8 @@ Authorization: Bearer <token_jwt>
 | `dataVencimento` | `DateTime?` | Data de vencimento |
 | `completa` | `bool` | Indica se está concluída |
 
+---
+
 ## Rotas do front-end Angular
 
 | Rota | Componente | Descrição |
@@ -232,6 +259,8 @@ Authorization: Bearer <token_jwt>
 | `/task-form` | TaskForm | Cadastro de nova tarefa |
 | `/task-form-edit/:id` | TaskFormEdit | Edição de tarefa |
 | `/task-list-mock` | TaskListMock | Listagem mock (desenvolvimento) |
+
+---
 
 ## Migrations
 
@@ -243,6 +272,8 @@ dotnet ef migrations add NomeDaMigration --project ../ListaTarefas.Data
 dotnet ef database update --project ../ListaTarefas.Data
 ```
 
+---
+
 ## Contribuindo
 
 1. Faça um fork do projeto
@@ -250,6 +281,8 @@ dotnet ef database update --project ../ListaTarefas.Data
 3. Commit suas alterações (`git commit -m 'Adiciona minha feature'`)
 4. Push para a branch (`git push origin feature/minha-feature`)
 5. Abra um Pull Request
+
+---
 
 ## Licença
 
